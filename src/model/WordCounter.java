@@ -55,6 +55,12 @@ public class WordCounter implements HashInterface<HashElement> {
 
 
 
+  /**
+   * @author Ethan Koop
+   * Remove method that takes in a key and removes said key and replaces the value with null
+   * @param key to be removed
+   * @return replaces returned key with null
+   */
   @Override
   public HashElement remove(HashElement key) {
     
