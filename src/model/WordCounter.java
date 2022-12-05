@@ -6,14 +6,15 @@ import model.HashInterface;
 public class WordCounter implements HashInterface<HashElement> {
 
 
-  public WordCounter(int size) {
-    this.size = size;
-  }
+ 
 
   private int size;
-  HashElement[] hashtable = new HashElement[size];
+  private HashElement[] hashtable;
 
-
+ public WordCounter(int size) {
+    this.size = size;
+    hashtable = new HashElement[size];
+  }
 
   @Override
   public int gethashCode(HashElement key) {
@@ -36,15 +37,18 @@ public class WordCounter implements HashInterface<HashElement> {
   public void put(HashElement key) {
     // TODO Auto-generated method stub
     int hashCode = gethashCode(key);
-    if (hashtable==null) {
-      hashtable[hashCode] = key;
-    } else {
-      if (hashtable[hashCode] != null) {
-        putQuad(hashCode, key);
-      } else {
-        System.out.println("Table is full");
-      }
-    }
+    System.out.println(hashCode);
+    putQuad(hashCode, key);
+    System.out.println(Arrays.toString(hashtable));
+//    if (hashtable==null) {
+//      hashtable[hashCode] = key;
+//    } else {
+//      if (hashtable[hashCode] != null) {
+//        putQuad(hashCode, key);
+//      } else {
+//        System.out.println("Table is full");
+//      }
+//    }
   }
 
 
@@ -66,14 +70,15 @@ public class WordCounter implements HashInterface<HashElement> {
   @Override
   public void printTable() {
     // TODO Auto-generated method stub
-    for (int index = 0; index < size; index++) {
-      if (hashtable[index] == null) {
-        System.out.println(" ");
-      } else {
-        System.out.println(hashtable[index].getWord().toString());
-      }
-
-    }
+    System.out.println(Arrays.toString(hashtable));
+//    for (int index = 0; index < size; index++) {
+//      if (hashtable[index] == null) {
+//        System.out.println(" ");
+//      } else {
+//        System.out.println(hashtable[index].getWord().toString());
+//      }
+//
+//    }
   }
 
   public int quadraticProb(int index) {
