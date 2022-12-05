@@ -9,6 +9,10 @@ public class HashElement {
 		this.word = word;
 		this.count = count;
 	}
+	public HashElement (String word) {
+	  this.word=word;
+	  this.count=0;
+	}
 	
 	public String getWord() {
 		return word;
@@ -25,7 +29,7 @@ public class HashElement {
 	
 	@Override
 	public String toString() {
-		return "Number of times " + word + "occures is: " + count;
+		return "Number of times " + word + " occures is: " + count;
 	}
 
 
