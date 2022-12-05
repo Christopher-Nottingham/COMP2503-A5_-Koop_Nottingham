@@ -9,6 +9,10 @@ public class HashElement {
 		this.word = word;
 		this.count = count;
 	}
+	public HashElement (String word) {
+	  this.word=word;
+	  this.count=0;
+	}
 	
 	public String getWord() {
 		return word;
