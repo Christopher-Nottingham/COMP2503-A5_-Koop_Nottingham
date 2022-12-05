@@ -79,15 +79,14 @@ public class WordCounter implements HashInterface<HashElement> {
 	@Override
 	public void printTable() {
 		// TODO Auto-generated method stub
-		System.out.println(Arrays.toString(hashtable));
-//    for (int index = 0; index < size; index++) {
-//      if (hashtable[index] == null) {
-//        System.out.println(" ");
-//      } else {
-//        System.out.println(hashtable[index].getWord().toString());
-//      }
-//
-//    }
+		for (int index = 0; index < size; index++) {
+			if (hashtable[index] == null) {
+
+			} else {
+				System.out.println(hashtable[index]);
+			}
+
+		}
 	}
 
 	public int quadraticProb(int index) {
