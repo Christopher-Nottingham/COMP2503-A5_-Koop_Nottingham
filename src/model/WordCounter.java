@@ -1,14 +1,15 @@
 package model;
 
-
+import java.util.Arrays;
 
 import model.HashElement;
 import model.HashInterface;
 
 public class WordCounter implements HashInterface<HashElement> {
-
+	private int counter = 0;
 	private int size;
 	private HashElement[] hashtable;
+	private String hashIndexToString = null;
 
 	public WordCounter(int size) {
 		this.size = size;
@@ -27,12 +28,10 @@ public class WordCounter implements HashInterface<HashElement> {
 		char charKey[] = key.getWord().toString().toLowerCase().toCharArray();
 		int s = charKey.length;
 		int a = 2;
-		System.out.println("The charKey[] lenght " + s);
+
 		for (int counter = 0; counter < charKey.length; counter++) {
 			int letter = charKey[counter];
-			asciiSum = asciiSum + (letter * (a ^ (charKey.length - (counter+1))));
-			System.out.println("The ascii number of " + charKey[counter] + " is " + letter);
-			System.out.println("The power of a is " + (charKey.length-(counter+1)));
+			asciiSum = asciiSum + (letter * (a ^ (charKey.length - (counter + 1))));
 		}
 		return asciiSum % size;
 	}
@@ -45,11 +44,7 @@ public class WordCounter implements HashInterface<HashElement> {
 	@Override
 	public void put(HashElement key) {
 		int hashCode = gethashCode(key);
-		System.out.println(hashCode);
 		putQuad(hashCode, key);
-		
-		
-
 	}
 
 	/**
@@ -100,7 +95,7 @@ public class WordCounter implements HashInterface<HashElement> {
 			if (hashtable[index] == null) {
 
 			} else {
-				
+
 				System.out.println(hashtable[index]);
 			}
 
@@ -113,44 +108,28 @@ public class WordCounter implements HashInterface<HashElement> {
 	 * @return the probed index
 	 */
 	public int quadraticProb(int index) {
-		/*
-		 * Prob Index = hashcode + j2
-		 */
 
-		//int hashcode = index;
-//		String word = hashtable[index].getWord();
-//		int lengthOfWord= hashtable[index].getWord().length();
-//		for (int j = 0; j < lengthOfWord; j++) {
-//			int k = j + 1;
-//			System.out.println(k);
-//			index = index * (k * k) % size;
-//			if (hashtable[index] == null) {
-//				return index;
-//			}
-//		}
-//		return -1;
 		String word = hashtable[index].getWord();
-		
-		int lengthOfWord= hashtable[index].getWord().length();
+
+		int lengthOfWord = hashtable[index].getWord().length();
 		int probeIndex = 0;
-		
+
 		int hashcode = index;
-		
+
 		for (int j = 0; j < size; j++) {
-		
+
 			int k = j + 1;
-			
-		
-			probeIndex = (hashcode + (k * k))% size;
-			
+
+			probeIndex = (hashcode + (k * k)) % size;
+
 			if (hashtable[probeIndex] == null) {
-			
+
 				return probeIndex;
-			
+
 			}
-		
+
 		}
-		
+
 		return -1;
 	}
 
@@ -160,35 +139,65 @@ public class WordCounter implements HashInterface<HashElement> {
 	 * @param theArg to be put
 	 */
 	public void putQuad(int index, HashElement theArg) {
+
+		if (theArg == null) {
+			counter--;
+		}
+		String theArgToString = theArg.getWord();
+		if (hashtable[index] != null) {
+
+			hashIndexToString = hashtable[index].getWord().toString();
+		}
+
 		if (hashtable[index] == null) {
-			
+			counter++;
 			hashtable[index] = theArg;
-			
+		}
+
+		else if (hashIndexToString.compareTo(theArgToString) == 0) {
+			counter++;
+			hashtable[index].setCount(hashtable[index].getCount());
 		} else {
-			HashElement keyToRemove = hashtable[index];
-			
-			
-			
-			int j = quadraticProb(index);
-			remove(keyToRemove);
-			if (j == -1) {
-				System.out.println("Error the table is full!");
-			} else {
-				
-				hashtable[j] = theArg;
-//				System.out.println("The current count is: " + hashtable[j].getCount());
-//				System.out.println("The current count for the Arg is: " + theArg.getCount());
-				//int currentCount = hashtable[j].getCount();
-				
-				//hashtable[j].setCount(currentCount + 1);
-//				System.out.println("The new count is: " + hashtable[j].getCount());
-				theArg.setCount(theArg.getCount()+1);
-//				System.out.println("The new count for the Arg is: " + theArg.getCount());
-				
-			}
 
 		}
 
 	}
 
+	public void printDistinctWords() {
+		int counter = 0;
+		for (int i = 0; i < hashtable.length; i++) {
+			if (hashtable[i] != null) {
+				counter++;
+			}
+
+		}
+		System.out.println("\nTotal number of distinct words are: " + counter);
+	}
+
+	public void printMostComonWord() {
+
+		HashElement theMostCommonWord = new HashElement(null);
+
+		for (int i = 0; i < hashtable.length; i++) {
+			{
+
+				if (hashtable[i] == null) {
+
+				} else if (hashtable[i].getCount() > theMostCommonWord.getCount()) {
+					theMostCommonWord = hashtable[i];
+				} else {
+
+				}
+
+			}
+
+		}
+
+		System.out.println("The most common word is " + "'" + theMostCommonWord.getWord() + "'" + " and occurs "
+				+ theMostCommonWord.getCount() + " times");
+	}
+
+	public void printTotalNumberOfWords() {
+		System.out.println("The total number of words in the file are: " + counter);
+	}
 }

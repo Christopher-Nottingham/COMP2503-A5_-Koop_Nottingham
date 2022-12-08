@@ -22,7 +22,8 @@ public class HashElement {
 	}
 	public HashElement (String word) {
 	  this.word=word;
-	  this.count=0;
+	  this.count=this.getCount();
+	  
 	}
 	
 	public String getWord() {
@@ -35,7 +36,7 @@ public class HashElement {
 		return count;
 	}
 	public void setCount(int count) {
-		this.count = count;
+		this.count = getCount() +1;
 	}
 	
 	/**
@@ -43,7 +44,7 @@ public class HashElement {
 	 */
 	@Override
 	public String toString() {
-		return "Number of times " + word + " occures is: " + count;
+		return "Number of times '" + word + "' occures is: " + count;
 	}
 
 
