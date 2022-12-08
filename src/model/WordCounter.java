@@ -15,6 +15,12 @@ public class WordCounter implements HashInterface<HashElement> {
 		hashtable = new HashElement[size];
 	}
 
+	/**
+	 * @author Christopher Nottingham
+	 * Solves the hashcode from the assignment by getting the ASCII value of each character and adding it for each word, 
+	 * then takes the total ASCII value of the word and returns the modular of the total by the size of the table. 
+	 * @param key to retrieve hashcode from
+	 */
 	@Override
 	public int gethashCode(HashElement key) {
 		int asciiSum = 0;
@@ -31,6 +37,11 @@ public class WordCounter implements HashInterface<HashElement> {
 		return asciiSum % size;
 	}
 
+	/**
+	 * @author Christopher Nottingham
+	 * Puts the word into the hashtable using quadratic probing
+	 * @param key to be put into the table
+	 */
 	@Override
 	public void put(HashElement key) {
 		int hashCode = gethashCode(key);
@@ -41,6 +52,11 @@ public class WordCounter implements HashInterface<HashElement> {
 
 	}
 
+	/**
+	 * @author Ethan Koop
+	 * Finds the given key, removes the key and replaces it's value in the table as "null"
+	 * This leaves room for another item to be put. 
+	 */
 	@Override
 	public HashElement remove(HashElement key) {
 
@@ -60,6 +76,10 @@ public class WordCounter implements HashInterface<HashElement> {
 		return null;
 	}
 
+	/**
+	 * @author Christopher Nottingham
+	 * Resets the hashtable
+	 */
 	@Override
 	public void reset() {
 		// TODO Auto-generated method stub
@@ -69,6 +89,10 @@ public class WordCounter implements HashInterface<HashElement> {
 		}
 	}
 
+	/**
+	 * @author Christoper Nottingham
+	 * Prints the table.
+	 */
 	@Override
 	public void printTable() {
 		// TODO Auto-generated method stub
@@ -83,6 +107,11 @@ public class WordCounter implements HashInterface<HashElement> {
 		}
 	}
 
+	/**
+	 * @author Christopher Nottingham
+	 * @param index to be probed
+	 * @return the probed index
+	 */
 	public int quadraticProb(int index) {
 		/*
 		 * Prob Index = hashcode + j2
@@ -125,6 +154,11 @@ public class WordCounter implements HashInterface<HashElement> {
 		return -1;
 	}
 
+	/**
+	 * Puts the item using quadratic probing
+	 * @param index to be put
+	 * @param theArg to be put
+	 */
 	public void putQuad(int index, HashElement theArg) {
 		if (hashtable[index] == null) {
 			
