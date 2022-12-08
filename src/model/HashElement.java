@@ -26,15 +26,34 @@ public class HashElement {
 	  
 	}
 	
+	/**
+	 * Getter method for the word 
+	 * @return the word
+	 */
 	public String getWord() {
 		return word;
 	}
+	
+	/**
+	 * Setter method for the word
+	 * @param word
+	 */
 	public void setWord(String word) {
 		this.word = word;
 	}
+	
+	/**
+	 * Getter method for getting the count of the word
+	 * @return
+	 */
 	public int getCount() {
 		return count;
 	}
+	
+	/**
+	 * Set method that increase the count by one
+	 * @param count
+	 */
 	public void setCount(int count) {
 		this.count = getCount() +1;
 	}
